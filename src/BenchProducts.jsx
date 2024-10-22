@@ -23,7 +23,7 @@ const BenchProducts = () => {
     fetchData()
     const interval = setInterval(() => {
       fetchData()
-    }, 30000)
+    }, 25000)
 
     return () => clearInterval(interval)
     // axios.get(`http://10.60.107.64:8080/integra/GetAllBench`)
