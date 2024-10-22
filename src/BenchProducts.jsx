@@ -70,31 +70,62 @@ const BenchProducts = () => {
                   oechsle > 0 ? oechsle : Infinity,
                   plazavea > 0 ? plazavea : Infinity
                 );
+
+                const maxPrice = Math.max(
+                  carsa > 0 ? carsa : -Infinity, 
+                  curacao > 0 ? curacao : -Infinity, 
+                  hiraoka > 0 ? hiraoka : -Infinity, 
+                  estilos > 0 ? estilos : -Infinity,
+                  ripley > 0 ? ripley : -Infinity,
+                  oechsle > 0 ? oechsle : -Infinity,
+                  plazavea > 0 ? plazavea : -Infinity
+                );
                 
 
                 return (
                   <tr key={sku}>
                     <td className="label">{nombre}</td>
                     <td className="label">{sku}</td>
-                    <td className={`${carsa === minPrice && carsa > 0 ? 'highlight' : 'alerta'} centered carsahigh`}>
+                    <td className={`
+                      ${carsa === minPrice && carsa > 0 ? 'highlight' : 'alerta'} 
+                      ${carsa === maxPrice && carsa > 0 ? 'max-price' : ''} 
+                      centered carsahigh`}>
                       {carsa > 0 ? carsa : "-"}
                     </td>
-                    <td className={`${plazavea === minPrice && plazavea > 0 ? 'highlight' : 'label'} centered`}>
+                    <td className={`
+                      ${plazavea === minPrice && plazavea > 0 ? 'highlight' : 'label'} 
+                      ${plazavea === maxPrice && plazavea > 0 ? 'max-price' : ''} 
+                      centered`}>
                       {plazavea > 0 ? plazavea : "-"}
                     </td>
-                    <td className={`${oechsle === minPrice && oechsle > 0 ? 'highlight' : 'label'} centered`}>
+                    <td className={`
+                      ${oechsle === minPrice && oechsle > 0 ? 'highlight' : 'label'} 
+                      ${oechsle === maxPrice && oechsle > 0 ? 'max-price' : ''} 
+                      centered`}>
                       {oechsle > 0 ? oechsle : "-"}
                     </td>
-                    <td className={`${ripley === minPrice && ripley > 0 ? 'highlight' : 'label'} centered`}>
+                    <td className={`
+                      ${ripley === minPrice && ripley > 0 ? 'highlight' : 'label'} 
+                      ${ripley === maxPrice && ripley > 0 ? 'max-price' : ''} 
+                      centered`}>
                       {ripley > 0 ? ripley : "-"}
                     </td>
-                    <td className={`${curacao === minPrice && curacao > 0 ? 'highlight' : 'label'} centered`}>
+                    <td className={`
+                      ${curacao === minPrice && curacao > 0 ? 'highlight' : 'label'} 
+                      ${curacao === maxPrice && curacao > 0 ? 'max-price' : ''} 
+                      centered`}>
                       {curacao > 0 ? curacao : "-"}
                     </td>
-                    <td className={`${hiraoka === minPrice && hiraoka > 0 ? 'highlight' : 'label'} centered`}>
+                    <td className={`
+                      ${hiraoka === minPrice && hiraoka > 0 ? 'highlight' : 'label'} 
+                      ${hiraoka === maxPrice && hiraoka > 0 ? 'max-price' : ''} 
+                      centered`}>
                       {hiraoka > 0 ? hiraoka : "-"}
                     </td>
-                    <td className={`${estilos === minPrice && estilos > 0 ? 'highlight' : 'label'} centered`}>
+                    <td className={`
+                      ${estilos === minPrice && estilos > 0 ? 'highlight' : 'label'} 
+                      ${estilos === maxPrice && estilos > 0 ? 'max-price' : ''} 
+                      centered`}>
                       {estilos > 0 ? estilos : "-"}
                     </td>
                   </tr>
