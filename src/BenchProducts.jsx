@@ -49,6 +49,7 @@ const BenchProducts = () => {
               <th className="centered">Nombre</th>
               <th className="centered">Sku</th>
               <th className="centered carsahigh">Carsa</th>
+              <th className="centered">Plaza Vea</th>
               <th className="centered">Oechsle</th>
               <th className="centered">Ripley</th>
               <th className="centered">Curacao</th>
@@ -58,7 +59,7 @@ const BenchProducts = () => {
           </thead>
           <tbody>
             {
-              data && data.map(({ sku, nombre, carsa, curacao, hiraoka, estilos, ripley, oechsle }) => {
+              data && data.map(({ sku, nombre, carsa, curacao, hiraoka, estilos, ripley, oechsle, plazavea }) => {
                 
                 const minPrice = Math.min(
                   carsa > 0 ? carsa : Infinity, 
@@ -66,7 +67,8 @@ const BenchProducts = () => {
                   hiraoka > 0 ? hiraoka : Infinity, 
                   estilos > 0 ? estilos : Infinity,
                   ripley > 0 ? ripley : Infinity,
-                  oechsle > 0 ? oechsle : Infinity
+                  oechsle > 0 ? oechsle : Infinity,
+                  plazavea > 0 ? plazavea : Infinity
                 );
                 
 
@@ -76,6 +78,9 @@ const BenchProducts = () => {
                     <td className="label">{sku}</td>
                     <td className={`${carsa === minPrice && carsa > 0 ? 'highlight' : 'alerta'} centered carsahigh`}>
                       {carsa > 0 ? carsa : "-"}
+                    </td>
+                    <td className={`${plazavea === minPrice && plazavea > 0 ? 'highlight' : 'label'} centered`}>
+                      {plazavea > 0 ? plazavea : "-"}
                     </td>
                     <td className={`${oechsle === minPrice && oechsle > 0 ? 'highlight' : 'label'} centered`}>
                       {oechsle > 0 ? oechsle : "-"}
