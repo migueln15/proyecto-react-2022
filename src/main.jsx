@@ -10,13 +10,14 @@ import CriptoPage from './components/cripto/CriptoPage.jsx'
 import Perfil from './components/usuarios/Perfil.jsx'
 import { UserContextProvider } from './context/UserContext.jsx'
 import Login from './components/usuarios/Login.jsx'
+import BenchProducts from './BenchProducts.jsx'
 
 createRoot(document.getElementById('root')).render(
       <UserContextProvider>
             <>
                   <BrowserRouter>
                         <Routes>
-                              <Route path='/' element={<App/>}>
+                              <Route path='/' element={<BenchProducts/>}>
                                     <Route index element={<Home />}/>
                                     <Route path='perfil' element={<Perfil/>}/>
                               </Route>
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
                                     <Route path=':id' element={<CriptoPage />}/>
                               </Route>
                               <Route path='Login' element={<Login/>}/>
+                              <Route path='Bench' element={<BenchProducts/>}/>
                               <Route path='*' element={<Pagina404/>}/>
                         </Routes>
                   </BrowserRouter>

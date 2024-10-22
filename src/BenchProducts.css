@@ -1,0 +1,22 @@
+.label {
+  padding: 10px;
+}
+
+.highlight {
+  color: green;
+  font-weight: bold;
+}
+
+.alerta {
+  color: orange;
+  font-weight: bold;
+}
+
+.centered {
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+.carsahigh{
+  border-left: 3px solid lightblue; 
+  border-right: 3px solid lightblue;
+}
