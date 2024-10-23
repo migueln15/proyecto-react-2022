@@ -1,15 +1,16 @@
 .label {
-  padding: 10px;
+  padding: 0.2rem;
+
 }
 
 .highlight {
   color: limegreen;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .alerta {
   color: darkorange;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .centered {
@@ -26,5 +27,45 @@
   text-decoration-thickness: 5px;
   text-decoration-color: red;
   color: crimson;
-  font-weight: bold;
+  /* font-weight: bold; */
+  
+}
+.best-price{
+  color: limegreen;
+  /* font-weight: bold; */
+}
+.worst-price{
+  color: crimson;
+  /* font-weight: bold; */
+}
+.alert-price {
+  color: darkorange;
+  /* font-weight: bold; */
+}
+
+.kpi-product-positive{
+  font-size: 11px;
+  /* color: #3FB923; */
+  /* color: limegreen; */
+  font-family: Open , sans-serif;
+  direction: ltr;
+  font-size: 11px;
+  letter-spacing: -.2px;
+  display: block;
+}
+.kpi-product-negative{
+  font-size: 11px;
+  /* color: #3FB923; */
+  /* color: crimson; */
+  font-family: Open , sans-serif;
+  direction: ltr;
+  font-size: 11px;
+  letter-spacing: -.2px;
+  display: block;
+}
+
+td, th {
+  padding: 0.5rem;
+  border-collapse: collapse;
+  text-align: left;
 }

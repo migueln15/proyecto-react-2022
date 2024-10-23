@@ -61,36 +61,44 @@ const BenchProducts = () => {
             {
               data && data.map(({ sku, nombre, carsa, curacao, hiraoka, estilos, ripley, oechsle, plazavea }) => {
                 
-                const minPrice = Math.min(
-                  carsa > 0 ? carsa : Infinity, 
-                  curacao > 0 ? curacao : Infinity, 
-                  hiraoka > 0 ? hiraoka : Infinity, 
-                  estilos > 0 ? estilos : Infinity,
-                  ripley > 0 ? ripley : Infinity,
-                  oechsle > 0 ? oechsle : Infinity,
-                  plazavea > 0 ? plazavea : Infinity
-                );
+                const prices = [
+                  carsa, 
+                  curacao, 
+                  hiraoka, 
+                  estilos,
+                  ripley,
+                  oechsle,
+                  plazavea
+                ]
+                const validPrices = prices.filter(price => price > 0);
+                const sortedPrices = [...validPrices].sort((a, b) => a - b)
 
-                const maxPrice = Math.max(
-                  carsa > 0 ? carsa : -Infinity, 
-                  curacao > 0 ? curacao : -Infinity, 
-                  hiraoka > 0 ? hiraoka : -Infinity, 
-                  estilos > 0 ? estilos : -Infinity,
-                  ripley > 0 ? ripley : -Infinity,
-                  oechsle > 0 ? oechsle : -Infinity,
-                  plazavea > 0 ? plazavea : -Infinity
-                );
-                
+                const minPrice = sortedPrices[0]
+                const secondMinPrice = sortedPrices[1]
+                const maxPrice = Math.max(...validPrices)
 
+                const getBestWorstClassName = (value) => {
+                  if (value === minPrice && value > 0) return 'best-price'
+                  if (value === maxPrice && value > 0) return 'worst-price'
+                  return 'alert-price'
+                }
+
+                const getKpiProduct = (value) => {
+                  if (value === minPrice && value > 0)
+                    return parseFloat((secondMinPrice - value) / secondMinPrice).toFixed(2) * 100
+                  if (value > minPrice && value > 0)
+                    return parseFloat((value - minPrice) / minPrice).toFixed(2) * 100
+                  
+                }
+      
                 return (
                   <tr key={sku}>
                     <td className="label">{nombre}</td>
                     <td className="label">{sku}</td>
-                    <td className={`
-                      ${carsa === minPrice && carsa > 0 ? 'highlight' : 'alerta'} 
-                      ${carsa === maxPrice && carsa > 0 ? 'max-price' : ''} 
-                      centered carsahigh`}>
+                    <td className={`${getBestWorstClassName(carsa)} centered carsahigh`}>
                       {carsa > 0 ? carsa : "-"}
+                      {carsa === minPrice && <span className="kpi-product-positive">{`(${getKpiProduct(carsa)}%)`}</span>}
+                      {carsa > minPrice && <span className="kpi-product-negative">{`(${getKpiProduct(carsa)}%)`}</span>}
                     </td>
                     <td className={`
                       ${plazavea === minPrice && plazavea > 0 ? 'highlight' : 'label'} 
