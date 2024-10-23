@@ -44,28 +44,26 @@
 }
 
 .kpi-product-positive{
-  font-size: 11px;
   /* color: #3FB923; */
   /* color: limegreen; */
   font-family: Open , sans-serif;
   direction: ltr;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: -.2px;
   display: block;
 }
 .kpi-product-negative{
-  font-size: 11px;
   /* color: #3FB923; */
   /* color: crimson; */
   font-family: Open , sans-serif;
   direction: ltr;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: -.2px;
   display: block;
 }
 
 td, th {
-  padding: 0.5rem;
+  padding: 0.7rem;
   border-collapse: collapse;
   text-align: left;
 }
