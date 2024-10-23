@@ -49,6 +49,8 @@ const BenchProducts = () => {
               <th className="centered">Nombre</th>
               <th className="centered">Sku</th>
               <th className="centered carsahigh">Carsa</th>
+              <th className="centered">Saga MKT</th>
+              <th className="centered">Falabella</th>
               <th className="centered">Plaza Vea</th>
               <th className="centered">Oechsle</th>
               <th className="centered">Ripley</th>
@@ -59,7 +61,7 @@ const BenchProducts = () => {
           </thead>
           <tbody>
             {
-              data && data.map(({ sku, nombre, carsa, curacao, hiraoka, estilos, ripley, oechsle, plazavea }) => {
+              data && data.map(({ sku, nombre, carsa, curacao, hiraoka, estilos, ripley, oechsle, plazavea, falabella, falamkt }) => {
                 
                 const prices = [
                   carsa, 
@@ -68,7 +70,9 @@ const BenchProducts = () => {
                   estilos,
                   ripley,
                   oechsle,
-                  plazavea
+                  plazavea,
+                  falabella,
+                  falamkt
                 ]
                 const validPrices = prices.filter(price => price > 0);
                 const sortedPrices = [...validPrices].sort((a, b) => a - b)
@@ -99,6 +103,18 @@ const BenchProducts = () => {
                       {carsa > 0 ? carsa : "-"}
                       {carsa === minPrice && <span className="kpi-product-positive">{`(${getKpiProduct(carsa)}%)`}</span>}
                       {carsa > minPrice && <span className="kpi-product-negative">{`(${getKpiProduct(carsa)}%)`}</span>}
+                    </td>
+                    <td className={`
+                      ${falamkt === minPrice && falamkt > 0 ? 'highlight' : 'label'} 
+                      ${falamkt === maxPrice && falamkt > 0 ? 'max-price' : ''} 
+                      centered`}>
+                      {falamkt > 0 ? falamkt : "-"}
+                    </td>
+                    <td className={`
+                      ${falabella === minPrice && falabella > 0 ? 'highlight' : 'label'} 
+                      ${falabella === maxPrice && falabella > 0 ? 'max-price' : ''} 
+                      centered`}>
+                      {falabella > 0 ? falabella : "-"}
                     </td>
                     <td className={`
                       ${plazavea === minPrice && plazavea > 0 ? 'highlight' : 'label'} 
