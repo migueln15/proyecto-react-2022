@@ -117,14 +117,14 @@ const BenchProducts = () => {
                       {carsa_url ? (
                         <a href={carsa_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
                           {carsa_price > 0 ? carsa_price : "-"}
-                          {carsa_price === minPrice && <span className="kpi-product-positive">{`(${getKpiProduct(carsa_price)}%)`}</span>}
-                          {carsa_price > minPrice && <span className="kpi-product-negative">{`(${getKpiProduct(carsa_price)}%)`}</span>}
+                          {carsa_price === minPrice && <span className="kpi-product-positive">{`-${getKpiProduct(carsa_price)}%`}</span>}
+                          {carsa_price > minPrice && <span className="kpi-product-negative">{`+${getKpiProduct(carsa_price)}%`}</span>}
                         </a>
                       ):(
                         <>
                           {carsa_price > 0 ? carsa_price : "-"}
-                          {carsa_price === minPrice && <span className="kpi-product-positive">{`(${getKpiProduct(carsa_price)}%)`}</span>}
-                          {carsa_price > minPrice && <span className="kpi-product-negative">{`(${getKpiProduct(carsa_price)}%)`}</span>}
+                          {carsa_price === minPrice && <span className="kpi-product-positive">{`-${getKpiProduct(carsa_price)}%`}</span>}
+                          {carsa_price > minPrice && <span className="kpi-product-negative">{`+${getKpiProduct(carsa_price)}%`}</span>}
                         </>
                       )}
                     </td>
