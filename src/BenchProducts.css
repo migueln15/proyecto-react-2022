@@ -4,8 +4,9 @@
 }
 
 .highlight {
-  color: limegreen;
+  /* color: limegreen; */
   /* font-weight: bold; */
+  color: #3fb923;
 }
 
 .alerta {
@@ -26,16 +27,19 @@
   /* text-decoration: underline; */
   text-decoration-thickness: 5px;
   text-decoration-color: red;
-  color: crimson;
+  /* color: crimson; */
+  color: #c1092c;
   /* font-weight: bold; */
   
 }
 .best-price{
-  color: limegreen;
+  /* color: limegreen; */
+  color: #3fb923;
   /* font-weight: bold; */
 }
 .worst-price{
-  color: crimson;
+  /* color: crimson; */
+  color: #c1092c;
   /* font-weight: bold; */
 }
 .alert-price {
@@ -63,7 +67,7 @@
 }
 
 td, th {
-  padding: 0.7rem;
+  padding: 0.4rem 0.8rem;
   border-collapse: collapse;
   text-align: left;
 }

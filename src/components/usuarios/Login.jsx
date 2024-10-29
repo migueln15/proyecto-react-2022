@@ -17,23 +17,33 @@ const Login = () => {
   const [error, setError] = useState(false)
 
   const submit = (e) => {
+    // e.preventDefault()
+    // setCargando(true)
+    // setError(null)
+    // axios.post(`https://reqres.in/api/login`,user)
+    // .then(data => {
+    //   setCargando(false)
+    //   localStorage.setItem("tokenEDmarket", data.data.token)
+    //   navigation("/")
+    // })
+    // .catch(e => {
+    //   setCargando(false)
+    //   console.error(e)
+    //   setError(e.response.data.error)
+    // })
+
     e.preventDefault()
     setCargando(true)
     setError(null)
-    axios.post(`https://reqres.in/api/login`,user)
-    .then(data => {
-      setCargando(false)
-      localStorage.setItem("tokenEDmarket", data.data.token)
-      navigation("/")
-    })
-    .catch(e => {
-      setCargando(false)
-      console.error(e)
-      setError(e.response.data.error)
-    })
+    if (user.email == 'integra@integraretail.pe' && user.password == 'integra'){
+      localStorage.setItem("tokenIR", "tokenIR123#");
+      navigation("/");
+    }
+    else
+      setError("Usuario o clave incorrecta");
   }
 
-  if (localStorage.getItem("tokenEDmarket")) return <Navigate to="/"/>
+  if (localStorage.getItem("tokenIR")) return <Navigate to="/"/>
 
   return(
     <div className="login-container">

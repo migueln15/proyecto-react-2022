@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 
 import "./BenchProducts.css"
+import { Navigate } from "react-router-dom"
 
 const BenchProducts = () => {
 
@@ -38,7 +39,7 @@ const BenchProducts = () => {
 
   },[])
 
-  
+  //if (!localStorage.getItem("tokenIR")) return <Navigate to="/login"/>
 
   return (
     <>
@@ -61,18 +62,31 @@ const BenchProducts = () => {
           </thead>
           <tbody>
             {
-              data && data.map(({ sku, nombre, carsa, curacao, hiraoka, estilos, ripley, oechsle, plazavea, falabella, falamkt }) => {
+              data && data.map(({ sku, 
+                                  nombre, 
+
+                                  carsa_price,
+                                  sagamkt_price,
+                                  falabella_price,
+                                  plazavea_price,
+                                  oechsle_price,
+                                  ripley_price,
+                                  curacao_price,
+                                  hiraoka_price,
+                                  estilos_price,
+
+                                  carsa_url,
+                                  sagamkt_url,
+                                  falabella_url,
+                                  plazavea_url,
+                                  oechsle_url,
+                                  ripley_url,
+                                  curacao_url,
+                                  hiraoka_url,
+                                  estilos_url}) => {
                 
                 const prices = [
-                  carsa, 
-                  curacao, 
-                  hiraoka, 
-                  estilos,
-                  ripley,
-                  oechsle,
-                  plazavea,
-                  falabella,
-                  falamkt
+                  carsa_price, curacao_price, hiraoka_price, estilos_price, ripley_price, oechsle_price, plazavea_price, falabella_price, sagamkt_price
                 ]
                 const validPrices = prices.filter(price => price > 0);
                 const sortedPrices = [...validPrices].sort((a, b) => a - b)
@@ -89,9 +103,9 @@ const BenchProducts = () => {
 
                 const getKpiProduct = (value) => {
                   if (value === minPrice && value > 0)
-                    return parseFloat((secondMinPrice - value) / secondMinPrice).toFixed(2) * 100
+                    return (parseFloat((secondMinPrice - value) / secondMinPrice).toFixed(2) * 100).toFixed(0)
                   if (value > minPrice && value > 0)
-                    return parseFloat((value - minPrice) / minPrice).toFixed(2) * 100
+                    return (parseFloat((value - minPrice) / minPrice).toFixed(2) * 100).toFixed(0)
                   
                 }
       
@@ -99,58 +113,132 @@ const BenchProducts = () => {
                   <tr key={sku}>
                     <td className="label">{nombre}</td>
                     <td className="label">{sku}</td>
-                    <td className={`${getBestWorstClassName(carsa)} centered carsahigh`}>
-                      {carsa > 0 ? carsa : "-"}
-                      {carsa === minPrice && <span className="kpi-product-positive">{`(${getKpiProduct(carsa)}%)`}</span>}
-                      {carsa > minPrice && <span className="kpi-product-negative">{`(${getKpiProduct(carsa)}%)`}</span>}
+                    <td className={`${getBestWorstClassName(carsa_price)} centered carsahigh`}>
+                      {carsa_url ? (
+                        <a href={carsa_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {carsa_price > 0 ? carsa_price : "-"}
+                          {carsa_price === minPrice && <span className="kpi-product-positive">{`(${getKpiProduct(carsa_price)}%)`}</span>}
+                          {carsa_price > minPrice && <span className="kpi-product-negative">{`(${getKpiProduct(carsa_price)}%)`}</span>}
+                        </a>
+                      ):(
+                        <>
+                          {carsa_price > 0 ? carsa_price : "-"}
+                          {carsa_price === minPrice && <span className="kpi-product-positive">{`(${getKpiProduct(carsa_price)}%)`}</span>}
+                          {carsa_price > minPrice && <span className="kpi-product-negative">{`(${getKpiProduct(carsa_price)}%)`}</span>}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${falamkt === minPrice && falamkt > 0 ? 'highlight' : 'label'} 
-                      ${falamkt === maxPrice && falamkt > 0 ? 'max-price' : ''} 
+                      ${sagamkt_price === minPrice && sagamkt_price > 0 ? 'highlight' : 'label'} 
+                      ${sagamkt_price === maxPrice && sagamkt_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {falamkt > 0 ? falamkt : "-"}
+                      {sagamkt_url ? (
+                        <a href={sagamkt_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {sagamkt_price > 0 ? sagamkt_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {sagamkt_price > 0 ? sagamkt_price : "-"}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${falabella === minPrice && falabella > 0 ? 'highlight' : 'label'} 
-                      ${falabella === maxPrice && falabella > 0 ? 'max-price' : ''} 
+                      ${falabella_price === minPrice && falabella_price > 0 ? 'highlight' : 'label'} 
+                      ${falabella_price === maxPrice && falabella_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {falabella > 0 ? falabella : "-"}
+                      {falabella_url ? (
+                        <a href={falabella_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {falabella_price > 0 ? falabella_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {falabella_price > 0 ? falabella_price : "-"}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${plazavea === minPrice && plazavea > 0 ? 'highlight' : 'label'} 
-                      ${plazavea === maxPrice && plazavea > 0 ? 'max-price' : ''} 
+                      ${plazavea_price === minPrice && plazavea_price > 0 ? 'highlight' : 'label'} 
+                      ${plazavea_price === maxPrice && plazavea_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {plazavea > 0 ? plazavea : "-"}
+                      {plazavea_url ? (
+                        <a href={plazavea_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {plazavea_price > 0 ? plazavea_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {plazavea_price > 0 ? plazavea_price : "-"}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${oechsle === minPrice && oechsle > 0 ? 'highlight' : 'label'} 
-                      ${oechsle === maxPrice && oechsle > 0 ? 'max-price' : ''} 
+                      ${oechsle_price === minPrice && oechsle_price > 0 ? 'highlight' : 'label'} 
+                      ${oechsle_price === maxPrice && oechsle_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {oechsle > 0 ? oechsle : "-"}
+                      {oechsle_url ? (
+                        <a href={oechsle_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {oechsle_price > 0 ? oechsle_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {oechsle_price > 0 ? oechsle_price : "-"}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${ripley === minPrice && ripley > 0 ? 'highlight' : 'label'} 
-                      ${ripley === maxPrice && ripley > 0 ? 'max-price' : ''} 
+                      ${ripley_price === minPrice && ripley_price > 0 ? 'highlight' : 'label'} 
+                      ${ripley_price === maxPrice && ripley_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {ripley > 0 ? ripley : "-"}
+                      {ripley_url ? (
+                        <a href={ripley_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {ripley_price > 0 ? ripley_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {ripley_price > 0 ? ripley_price : "-"}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${curacao === minPrice && curacao > 0 ? 'highlight' : 'label'} 
-                      ${curacao === maxPrice && curacao > 0 ? 'max-price' : ''} 
+                      ${curacao_price === minPrice && curacao_price > 0 ? 'highlight' : 'label'} 
+                      ${curacao_price === maxPrice && curacao_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {curacao > 0 ? curacao : "-"}
+                      {curacao_url ? (
+                        <a href={curacao_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {curacao_price > 0 ? curacao_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {curacao_price > 0 ? curacao_price : "-"}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${hiraoka === minPrice && hiraoka > 0 ? 'highlight' : 'label'} 
-                      ${hiraoka === maxPrice && hiraoka > 0 ? 'max-price' : ''} 
+                      ${hiraoka_price === minPrice && hiraoka_price > 0 ? 'highlight' : 'label'} 
+                      ${hiraoka_price === maxPrice && hiraoka_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {hiraoka > 0 ? hiraoka : "-"}
+                      {hiraoka_url ? (
+                        <a href={hiraoka_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {hiraoka_price > 0 ? hiraoka_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {hiraoka_price > 0 ? hiraoka_price : "-"}
+                        </>
+                      )}
                     </td>
                     <td className={`
-                      ${estilos === minPrice && estilos > 0 ? 'highlight' : 'label'} 
-                      ${estilos === maxPrice && estilos > 0 ? 'max-price' : ''} 
+                      ${estilos_price === minPrice && estilos_price > 0 ? 'highlight' : 'label'} 
+                      ${estilos_price === maxPrice && estilos_price > 0 ? 'max-price' : ''} 
                       centered`}>
-                      {estilos > 0 ? estilos : "-"}
+                      {estilos_url ? (
+                        <a href={estilos_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          {estilos_price > 0 ? estilos_price : "-"}
+                        </a>
+                      ):(
+                        <>
+                          {estilos_price > 0 ? estilos_price : "-"}
+                        </>
+                      )}
                     </td>
                   </tr>
                 );
