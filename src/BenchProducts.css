@@ -3,6 +3,7 @@
 
 }
 
+
 .highlight {
   /* color: limegreen; */
   /* font-weight: bold; */
@@ -70,4 +71,8 @@ td, th {
   padding: 0.4rem 0.8rem;
   border-collapse: collapse;
   text-align: left;
+}
+
+.inprogress-row {
+  background-color: rgba(255, 182, 193, 0.3)!important;
 }

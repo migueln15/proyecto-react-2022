@@ -13,7 +13,8 @@ const BenchProducts = () => {
     axios.get(`https://bucker-web-api-10f06e076c5a.herokuapp.com/integra/GetAllBench`)
     .then(data => {
       console.log(data.data)
-      setData(data.data)
+      const sortedData = data.data.sort((a, b) => a.nombre.localeCompare(b.nombre));
+      setData(sortedData)
     })
     .catch(e => {
       console.error(e)
@@ -64,6 +65,7 @@ const BenchProducts = () => {
             {
               data && data.map(({ sku, 
                                   nombre, 
+                                  is_inprogress,
 
                                   carsa_price,
                                   sagamkt_price,
@@ -110,7 +112,7 @@ const BenchProducts = () => {
                 }
       
                 return (
-                  <tr key={sku}>
+                  <tr key={sku} className={is_inprogress === 1 ? "inprogress-row" : ""}>
                     <td className="label">{nombre}</td>
                     <td className="label">{sku}</td>
                     <td className={`${getBestWorstClassName(carsa_price)} centered carsahigh`}>
