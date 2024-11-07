@@ -1,3 +1,20 @@
+.bench-container {
+  max-height: 100vh; /* Altura máxima de la tabla con scroll */
+  overflow-y: auto;  /* Scroll vertical */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  position: sticky; /* Hace que el encabezado se mantenga fijo */
+  top: 0;
+  background-color: #171837 ; /* Fondo para distinguirlo del contenido */
+  z-index: 1; /* Asegura que el thead esté encima de las filas */
+}
+
 .label {
   padding: 0.2rem;
 
