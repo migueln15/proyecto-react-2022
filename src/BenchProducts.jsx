@@ -7,6 +7,8 @@ import { Navigate } from "react-router-dom"
 const BenchProducts = () => {
 
   const [data, setData] = useState([])
+  const [carsaMinPriceCount, setCarsaMinPriceCount] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
 
   const fetchData = async () => {
     //axios.get(`http://192.168.68.100:8080/integra/GetAllBench`)
@@ -14,7 +16,29 @@ const BenchProducts = () => {
     .then(data => {
       console.log(data.data)
       const sortedData = data.data.sort((a, b) => a.nombre.localeCompare(b.nombre));
-      setData(sortedData)
+      setData(sortedData);
+
+      // Calcular el número de precios mínimos para Carsa
+      const count = sortedData.reduce((acc, item) => {
+        const prices = [
+          item.carsa_price,
+          item.curacao_price,
+          item.hiraoka_price,
+          item.estilos_price,
+          item.ripley_price,
+          item.oechsle_price,
+          item.plazavea_price,
+          item.falabella_price,
+          item.sagamkt_price,
+        ];
+        const validPrices = prices.filter(price => price > 0);
+        const minPrice = Math.min(...validPrices);
+        return acc + (item.carsa_price === minPrice ? 1 : 0);
+      }, 0);
+
+      setCarsaMinPriceCount(count); // Actualizar el conteo en el estado
+      setTotalCount(sortedData.length); // Total de productos
+
     })
     .catch(e => {
       console.error(e)
@@ -50,7 +74,10 @@ const BenchProducts = () => {
             <tr>
               <th className="centered">Nombre</th>
               <th className="centered">Sku</th>
-              <th className="centered carsahigh">Carsa</th>
+              <th className="centered carsahigh">
+                Carsa
+                <div className="carsa-min-price-count">{carsaMinPriceCount}/{totalCount}</div>
+              </th>
               <th className="centered">Saga MKT</th>
               <th className="centered">Falabella</th>
               <th className="centered">Plaza Vea</th>

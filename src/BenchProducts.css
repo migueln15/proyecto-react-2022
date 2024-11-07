@@ -24,6 +24,10 @@
   border-right: 3px solid lightblue;
 }
 
+.carsa-min-price-count{
+  font-size: 13px;
+}
+
 .max-price {
   /* text-decoration: underline; */
   text-decoration-thickness: 5px;
