@@ -15,7 +15,8 @@ const BenchProducts = () => {
     axios.get(`https://bucker-web-api-10f06e076c5a.herokuapp.com/integra/GetAllBench`)
     .then(data => {
       console.log(data.data)
-      const sortedData = data.data.sort((a, b) => a.nombre.localeCompare(b.nombre));
+      //const sortedData = data.data.sort((a, b) => a.nombre.localeCompare(b.nombre));
+      const sortedData = data.data.sort((a, b) => a.visual_order - b.visual_order);
       setData(sortedData);
 
       // Calcular el número de precios mínimos para Carsa
@@ -112,7 +113,8 @@ const BenchProducts = () => {
                                   ripley_url,
                                   curacao_url,
                                   hiraoka_url,
-                                  estilos_url}) => {
+                                  estilos_url,
+                                  visual_order}) => {
                 
                 const prices = [
                   carsa_price, curacao_price, hiraoka_price, estilos_price, ripley_price, oechsle_price, plazavea_price, falabella_price, sagamkt_price
